@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        class MyHead extends React.Component{
+            render(){
+                // 取代 React.createElement("h1", null, "Hello World")
+                return <h1>Hello World</h1>;
+            }
+        }
+        window.addEventListener("load", ()=>{
+            let myElement=<MyHead/>; // 取代 React.createElement(MyHead)
+            ReactDOM.render(
+                myElement, document.body
+            );
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
