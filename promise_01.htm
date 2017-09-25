@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+
+    function calculate(n1, n2){
+        return new Promise(function(resolve,reject){
+            window.setTimeout(function(){
+                let result=n1+n2;
+                resolve(result);
+                reject("Error");
+                // 請將 result 變數的資料，串接到主程式中
+            }, 3000);        
+        });
+    }
+    let promise = calculate(3, 4);
+    promise.then(function(result){
+        console.log(result);
+    },function(err){
+        console.log(err);
+    });
+
+
+
+    /*
+    // calculate 函式：延遲 3 秒鐘後，做加法
+    function time(cb){
+        function calculate(n1, n2){
+            window.setTimeout(function(){
+                let result=n1+n2;
+                cb(result); // 子程式完成後，呼叫cb
+            }, 3000);
+        }
+        // cb(result);
+        calculate(3, 4); // 送出子程式
+    }
+
+    // 主流程：呼叫 calculate 進行加法，但結果會延遲 3 秒鐘
+    function showData(finalResult){
+        console.log(finalResult);
+    }
+
+    time(showData);
+    */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

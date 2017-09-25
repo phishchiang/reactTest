@@ -1,0 +1,50 @@
+<script>
+	// 定義一個類別
+	class Car{
+		constructor(color){
+			// 在類別中，定義建構式
+			// 建立新屬性color
+			this.color=color;
+		}
+		run(){
+			console.log("Car "+ this.color +" Running");
+		}
+		static showColors(){
+			console.log("We have three colors.");
+		}
+	}
+	// 定義子類別
+	class ElectricCar extends Car{
+		constructor(color){
+			super(color); // 呼叫父類別建構式
+			this.battery=100; // 子類別專屬定義的新屬性
+		}
+		run(distance){ // 在子類別中定義 run 方法，取代父類別同名方法
+			this.battery-=distance;
+			console.log("Car "+this.color+" Runs "+distance+" KM");
+		}
+	}
+	// 利用已經定義好的類別，產生新物件
+	// new Car() 呼叫建構式，產生新物件
+	let car1=new Car("blue");
+	let car2=new Car("red");
+	let car3=new ElectricCar("green");
+
+	// 尋找"方法"原型鍊的順序
+	// 物件實體 > ElectricCar 原型物件 > Car 原型物件 > Object 原型物件 > null
+
+	// 產生類別物件
+	let car4=new ElectricCar("yellow");
+	// 取得並在將圓形物件顯示出來
+	let carProto=Object.getPrototypeOf(car4); // Car 原型物件
+	console.log(carProto);
+	let objProto=Object.getPrototypeOf(carProto); // Object 原型物件
+	console.log(objProto);
+	let lastOne=Object.getPrototypeOf(objProto); // 原型鍊的終點 : null
+	console.log(lastOne);
+
+	// 呼叫靜態方法，跟類別(class)綁定
+	Car.showColors(); 
+	// 類別.靜態方法名稱，不能寫成Car.run();或是car1.showColors();
+	// 物件方法或是屬性，則是跟物件綁定
+</script>

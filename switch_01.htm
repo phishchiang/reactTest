@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Switch_01</title>
+    <!-- 準備好 react 和 babel 編譯 -->
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style type=text/css>
+        .switch{
+            width:60px;height:30px;background-color:#eeeeee;border-radius:15px
+        }
+        .switch>.btn{
+            width:30px;height:30px;background-color:#A7A7A7;border-radius:15px
+        }
+        .switch-on{
+            background-color:#84C6FC
+        }
+        .switch-on>.btn{
+            background-color:#2F6B9C;margin-left:30px
+        }
+    </style>
+    <script type="text/babel">
+        class Switch extends React.Component{ // 設計 Switch 元件
+            // 處理狀態；在建構式之中，初始化狀態
+            constructor(props){
+                super(props)
+                this.state={on:false};
+            }
+            render(){
+                // 根據初始化的狀態去調整狀態
+                // 條件式改變css，決定他的狀態
+                let className="switch";
+                if(this.state.on){
+                    className+=" switch-on"
+                }
+                // {參數} JSX 語法，動態套用至className
+                return <div onClick={this.update.bind(this)} className={className}>
+                    <div className="btn"></div>
+                </div> 
+            }
+            update(){
+                this.setState((currentState)=>({on:!currentState.on}));
+            }
+        }
+        window.addEventListener("load", ()=>{
+            // 寫一個元件，可以套用在網頁的任何一個地方
+            ReactDOM.render(<Switch/>, document.getElementById("switch-01"));
+            ReactDOM.render(<Switch/>, document.getElementById("switch-02"));
+        });
+    </script>
+</head>
+<body>
+    <div id="switch-01"></div>
+    <hr/>
+    <div id="switch-02"></div>
+</body2
+</html>

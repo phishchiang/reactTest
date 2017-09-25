@@ -1,0 +1,24 @@
+<script>
+
+	// 定義一個類別
+	class Car{
+		constructor(color){
+			this.color=color;
+		}
+		run(){
+			console.log("Car "+ this.color +" Running");
+		}
+	}
+	
+	// null > Object 原型物件 > Car 原型物件 > 類別物件
+
+	// 產生類別物件
+	let car=new Car("green");
+	// 取得並在將圓形物件顯示出來
+	let carProto=Object.getPrototypeOf(car); // Car 原型物件
+	console.log(carProto);
+	let objProto=Object.getPrototypeOf(carProto); // Object 原型物件
+	console.log(objProto);
+	let lastOne=Object.getPrototypeOf(objProto); // 原型鍊的終點 : null
+	console.log(lastOne);
+</script>
