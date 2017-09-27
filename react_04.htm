@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Install React</title>
+	<script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+	<script type="text/javascript">
+		// 定義，設計組件類別
+		class MyHead extends React.Component{
+			render(){
+				return React.createElement("H"+this.props.level, null, "Hello Compononet");
+			}
+		}
+		class MyHeadList extends React.Component{
+			// 組件類別建構式，一定要這樣寫
+			constructor(props){ // 外部傳進來的屬性，MyheadList建立時傳進來的屬性，目前即是null
+				super(props); // 再把父類別參數傳進去
+				this.state={maxLevel:3}; // 初始化狀態
+				window.setTimeout(()=>{ // 更新狀態!
+					// this.setState({maxLevel:6})
+					// 與目前的狀態有關，則必須這樣寫
+					this.setState((currentState, currentProps)=>({maxLevel:currentState.maxLevel+1}));
+				}, 2000);
+			}
+			render(){
+				let heads=[];
+				let head;
+				for (let i=1; i<this.state.maxLevel; i++){
+					head=React.createElement(MyHead, {level:i});
+					heads.push(head);
+				}
+				return React.createElement("DIV", null, heads); // heads 為子元件
+			}
+		}
+		window.addEventListener("load", ()=>{
+			//  1. 建立自訂的 React 組件實體，給定屬性
+			// let myComponent=React.createElement(MyHead, {level:3}); // 本來MyHead有額外屬性
+			let myComponent=React.createElement(MyHeadList, null); // 沒有用到額外的屬性
+			//  2. 將建立好的 React 組件實體畫到容器中
+			ReactDOM.render(myComponent, document.body);
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>
