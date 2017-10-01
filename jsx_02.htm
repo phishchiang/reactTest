@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        class MyHead extends React.Component{
+            render(){
+                // 取代 React.createElement("div", {className:"head"}, "Hello World" + this.props.level);
+                // 在 JSX ，{}裡面才能寫javascripts的語法
+                return <div className="head">Hello World {this.props.level}</div>;
+            }
+        }
+
+        class MyHeadList extends React.Component{
+            render(){
+                return <div>
+                    <MyHead level="1"/>
+                    <MyHead level="2"/>
+                    <MyHead level="3"/>
+                </div>;
+            }
+        }
+        window.addEventListener("load", ()=>{
+            // let myElement=<MyHead level="2" />; // 取代 React.createElement(MyHead, {level:2});
+            let myElement=<MyHeadList />; 
+            ReactDOM.render(
+                myElement, document.body
+            );
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

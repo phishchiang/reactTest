@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style type="text/css">
+        .head{font-size: 24px; font-weight: bold};
+    </style>
+    <script type="text/babel">
+        class MyHead extends React.Component{
+            render(){
+                // 取代如下
+                /* 
+                return React.createElement("div", 
+                {className:"head", style:{color: this.props.color}}, 
+                "Hello World" + this.props.level);
+                */
+                // 在 JSX ，{}裡面才能寫javascripts的語法
+                // 行內樣式，style={這裡面才能寫javascripts{樣式物件}}
+                // return <div className="head" style={{color:"red"}}>Hello World {this.props.level}</div>;
+                return <div className="head" style={{color:this.props.color}}>Hello World {this.props.level}</div>;
+            }
+        }
+
+        class MyHeadList extends React.Component{
+            render(){
+                return <div>
+                    <MyHead level="1" color="red"/>
+                    <MyHead level="2" color="green"/>
+                    <MyHead level="3" color="blue"/>
+                </div>;
+            }
+        }
+        window.addEventListener("load", ()=>{
+            // let myElement=<MyHead level="2" />; // 取代 React.createElement(MyHead, {level:2});
+            let myElement=<MyHeadList />; 
+            ReactDOM.render(
+                myElement, document.body
+            );
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
