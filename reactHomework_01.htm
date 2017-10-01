@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>React Homework 01</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
+    <script type="text/javascript">
+
+        class componentChild extends React.Component{
+            // 適當的實作組件類別二
+            render(){
+                return React.createElement("li", null,"myText"+this.props.size);
+            }
+        }
+        class componentParent extends React.Component{
+            // 實作 render 方法，回傳適當的繪製元件
+            render(){
+
+                let listAll=[];
+                let item;
+                for(let i=0; i<=6; i++){
+                    item=React.createElement(componentChild,{size:i});
+                    listAll.push(item);
+                }
+
+                // listAll=React.createElement(componentChild,null);
+                return React.createElement("ul", null, listAll);
+            }
+        }
+        // 3. 在網頁靜態內容載入後的主程序中，利用 React 組件繪製會面
+        window.addEventListener("load", ()=>{
+            // 建立組件實體
+            let element=React.createElement(componentParent,null);
+            // 繪製組件實體到網頁的容器(意指某個標籤)中
+            ReactDOM.render(element, document.body);
+        });
+    </script>
+
+</head>
+<body>
+    
+    <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ul>
+    
+</body>
+</html>

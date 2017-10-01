@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>React Homework 02</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script type="text/javascript">
+
+    // 1. 請按照教學，將 React 套件安裝在網頁中
+    // 2. 以下使用 React 組件的設計參考
+    class componentChild extends React.Component{
+        // 適當的實作組件類別二
+        render(){
+            return React.createElement("li", null, "Item "+ this.props.size);
+        }
+    }
+    class componentParent extends React.Component{
+        // 實作組件的建構式，並初始化狀態
+        
+        constructor(props){
+            super(props);
+            this.state={maxItem:4};
+            window.setTimeout(()=>{
+                // 在兩秒鐘之後，更新組件的狀態
+                this.setState((currentState, currentProps)=>{
+                    return {maxItem:currentState.maxItem-2};
+                });
+            }, 2000);
+        }
+        
+        // 實作 render 方法，回傳適當的繪製元件
+        render(){
+            // 在繪製的邏輯中，適當的使用組件的狀態，來產生變化
+            let listAll=[];
+            let listItem;
+            for (let i = 0; i < this.state.maxItem; i++) {
+                let listItem = React.createElement(componentChild,{size:i+1});
+                listAll.push(listItem);
+            }
+            return React.createElement("ul", null, listAll);
+        }
+    }
+    // 3. 在網頁靜態內容載入後的主程序中，利用 React 組件繪製會面
+    window.addEventListener("load", ()=>{
+        // 建立組件實體
+        let element=React.createElement(componentParent, null);
+        // 繪製組件實體到網頁的容器(意指某個標籤)中
+        ReactDOM.render(element, document.body);
+    });
+    </script>
+
+</head>
+<body>
+    <!-- 
+    <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ul>
+     -->
+</body>
+</html>
