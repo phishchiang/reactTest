@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Event</title>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style type="text/css">
+        .head-3{
+            font-weight:bold;
+            font-size: 36px;
+        }
+    </style>
+    <script type="text/babel">
+        // 定義，設計組件類別
+		class MyHead extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={color:"red"};
+            }
+
+			render(){
+				return <div className={"head-"+this.props.level}
+                style={{color:this.state.color}}
+                onClick={this.clickHandler.bind(this)}
+                onMouseOver={this.mouseOverHandler.bind(this)}
+                onMouseOut={this.mouseOutHandler.bind(this)}
+
+                >Hello Component</div>;
+			}
+
+            clickHandler(e){
+                // alert("Clicked");
+                this.setState({color:"blue"});
+            }
+
+            mouseOverHandler(e){
+                this.setState({color:"green"});
+            }
+
+            mouseOutHandler(e){
+                this.setState({color:"red"});
+            }
+
+		}
+		window.addEventListener("load", ()=>{
+			ReactDOM.render(<MyHead level="3"/>, document.body);
+		});
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

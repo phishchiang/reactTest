@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Form 01</title>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        class MyHead extends React.Component{
+            constructor(props){
+                super(props)
+                 // 初始化 state ，紀錄單行輸入框的資料
+                this.state={name:"", 
+                    gender:"male",
+                    message:""
+                };
+            }
+            render(){
+                // 在表單中註冊 onSubmit 事件
+                return <form onSubmit={this.handleSubmit.bind(this)}>
+                    Name <input type="text" value={this.state.name}
+                        onChange={this.handleNameChange.bind(this)} />
+                    <br/>
+                    Gender
+                    <select value={this.state.gender}
+                        onChange={this.handleGenderChange.bind(this)}>
+                        <option value="male">男</option>
+                        <option value="female">女</option>
+                    </select>
+                    <br/>
+                    Message<textarea value={this.state.message}
+                        onChange={this.handleMessageChange.bind(this)} />
+                    <br/>
+                    <input type="submit" value="Submit" />
+                </form>;
+            }
+            handleSubmit(e){
+                e.preventDefault(); // 可停止瀏覽器預設的表單處理動作
+                console.log("表單送出"); // 使用者點擊 Submit 送出表單後，在此進行處理
+                console.log("Name : "+ this.state.name);
+                console.log("Gender : "+ this.state.gender);
+                console.log("Message : "+ this.state.message);
+                // 根據使用者輸入的資料，進行任何想要的工作
+            }
+            handleNameChange(e){
+                this.setState({name:e.currentTarget.value});
+            }
+            handleGenderChange(e){
+                this.setState({gender:e.currentTarget.value});
+            }
+            handleMessageChange(e){
+                this.setState({message:e.currentTarget.value});
+            }
+
+        }
+
+        window.addEventListener("load", ()=>{
+            ReactDOM.render(<MyHead />, document.body);
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
