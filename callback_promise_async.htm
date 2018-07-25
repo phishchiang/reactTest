@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Callback_Promise_asyncFunc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    /*
+    // Async 寫法
+    function logWord(word){
+      setTimeout(function(){
+        console.log(word);
+      }, Math.floor(Math.random()*100)+1)
+    }
+
+    function logAll(){
+      logWord("A");
+      logWord("B");
+      logWord("C");
+    }
+    logAll()
+    
+    // Callback 寫法
+    function logWord(word, callback){
+      setTimeout(function(){
+        console.log(word);
+        callback();
+      }, Math.floor(Math.random()*100)+1)
+    }
+
+    function logAll(){
+      logWord("A", function(){
+        logWord("B", function(){
+          logWord("C", function(){}); 
+        });
+      });
+    }
+    logAll()
+    */
+    // Promise 寫法
+    function logWord(word){
+      return new Promise(function(resolve, reject){
+        setTimeout(function(){
+          console.log(word);
+          resolve();
+        }, Math.floor(Math.random()*100)+1)
+      })
+    }
+    /*
+    function logAll(){
+      logWord("A")
+      .then(function(){
+        return logWord("B");
+      })
+      .then(function(){
+        return logWord("C");
+      })
+    }
+    
+    // Arrow function 簡寫 Promise
+    function logAll(){
+      logWord("A")
+      .then(()=>logWord("B"))
+      .then(()=>logWord("C"))
+    }
+
+    logAll()
+    */
+
+    // Async & Await 寫法
+    async function logAll(){
+      await logWord('A')
+      await logWord('B')
+      await logWord('C')
+    }
+
+    logAll()
+  </script>
+</head>
+<body>
+  <h1>test</h1>
+</body>
+</html>
